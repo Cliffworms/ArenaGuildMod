@@ -1,0 +1,62 @@
+{
+    "Loaded": true,
+    "Name": "Daggerfall Arena",
+    "RegionName": "Daggerfall",
+    "HasDungeon": false,
+    "MapTableData": {
+        "MapId": 200183,
+        "Latitude": 38272,
+        "Longitude": 23424,
+        "LocationType": "ReligionCult",
+        "DungeonType": "NoDungeon",
+        "Discovered": true,
+        "Key": 0
+    },
+    "Exterior": {
+        "RecordElement": {
+            "Header": {
+                "X": 5996544,
+                "Y": 9797632,
+                "IsExterior": 32768,
+                "Unknown2": 0,
+                "LocationId": 29620,
+                "LocationName": "Daggerfall Arena"
+            }
+        },
+        "BuildingCount": 1,
+        "Buildings": [
+            {
+                "NameSeed": 4324,
+                "FactionId": 1030,
+                "Sector": 0,
+                "LocationId": 29621,
+                "BuildingType": "GuildHall",
+                "Quality": 16
+            }
+        ],
+        "ExteriorData": {
+            "AnotherName": "Daggerfall Arena",
+            "MapId": 200183,
+            "LocationId": 0,
+            "Width": 1,
+            "Height": 1,
+            "PortTownAndUnknown": 0,
+            "BlockNames": [
+                "ARENA01.RMB"
+            ]
+        }
+    },
+    "Climate": {
+        "WorldClimate": 231,
+        "ClimateType": "Temperate",
+        "NatureSet": "Nature_TemperateWoodland",
+        "GroundArchive": 302,
+        "NatureArchive": 504,
+        "SkyBase": 16,
+        "People": "Breton",
+        "Names": null
+    },
+    "Politic": 145,
+    "RegionIndex": 17,
+    "LocationIndex": 0
+}

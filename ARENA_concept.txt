@@ -1,0 +1,57 @@
+This mod tries to bring back what TES:Arena could have been...Arenas.
+
+
+
+GUILD SKILLS:
+Hand to hand
+-
+-
+-
+-
+?
+		GUILD RANKS:
+1 Fresh meat
+2 Punchbag
+3 Trainee
+4 Scrapper
+5 Brawler
+6 Bruiser
+7 Pugilist
+8 Duelist
+9 Gladiator
+10 Champion 
+
+		RANK BENEFITS:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+		BENEFITS (unsorted):
+Healer + magicka restorer
+Trainer
+Free house
+Lodging
+
+		NPCs
+A healer and magicka restorer.
+Trainer
+Ringmaster (questgiver)
+The Guardians gladiatoral group
+Chained animals
+		QUEST CONCEPTS:
+Low rank quests should include small animals like rats
+mid rank quests should inclue beasts like tigers, spiders
+mid rank quests should include human combatants
+high rank quests should include difficult humanoids or even atronachs in greater quantities.
+
+mis low rank quests may include having to retrieve a missing gladiator from an inn
+Some quests may need you to deliver a parcel of money to the thieves guild
+some quests may need you to go into a dungeon to 'capture' an animal for the arena.
+Some quest may need you to flush out an dark brotherhood assassin from the crowd.
+
