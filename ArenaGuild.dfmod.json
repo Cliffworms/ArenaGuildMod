@@ -1,5 +1,5 @@
 {
-    "ModTitle": "Elder Scrolls II: Arena",
+    "ModTitle": "Elder Scrolls II Arena",
     "ModVersion": "0.1",
     "ModAuthor": "Cliffworms, Hazelnut, Ninelan",
     "DFUnity_Version": "1.1.0",
@@ -30,6 +30,8 @@
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.085_7-0.png",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.328_1-0.PNG",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.169_0-0.png",
-        "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.074_0.png"
+        "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.074_0.png",
+        "Assets/Game/Mods/ArenaGuildMod/ArenaGuild.dfmod.json",
+        "Assets/Game/Mods/ArenaGuildMod/Textures/1210_21-0.png"
     ]
 }
