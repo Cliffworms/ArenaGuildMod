@@ -32,6 +32,8 @@
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.169_0-0.png",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.074_0.png",
         "Assets/Game/Mods/ArenaGuildMod/ArenaGuild.dfmod.json",
-        "Assets/Game/Mods/ArenaGuildMod/Textures/1210_21-0.png"
+        "Assets/Game/Mods/ArenaGuildMod/Textures/1210_21-0.png",
+        "Assets/Game/Mods/ArenaGuildMod/Models/ARENA_interrior.fbx",
+        "Assets/Game/Mods/ArenaGuildMod/Models/ARENA_exterior.fbx"
     ]
 }
