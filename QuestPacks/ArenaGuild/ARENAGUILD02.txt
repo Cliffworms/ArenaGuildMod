@@ -1,0 +1,263 @@
+Quest: ARENAGUILD02
+DisplayName: Battle - Tigers
+-- Message panels
+QRC:
+
+QuestorOffer:  [1000]
+<ce>                    Ohohohoho, [RANK], we've got a real good fight up ahead.
+<ce>                    Have you seen the beast they brought in today? A majestic
+<ce>                    specimen of a sabretooth tiger, imported right from
+<ce>                    Hammerfell. Do you think you can give the audience a
+<ce>                    good fight?
+
+RefuseQuest:  [1001]
+<ce>                    If you're a coward like that, I understand, someone else
+<ce>                    will shine in the arena instead of you.
+
+AcceptQuest:  [1002]
+<ce>                    Get in and give it your best. If the sabertooth gets you,
+<ce>                    you're on your own.
+
+QuestFail:  [1003]
+<ce>            
+
+QuestComplete:  [1004]
+<ce>                    *TEMP DIALOGUE*
+The beast is dead! Hurray! Here's your gold.
+
+--RumorsDuringQuest:   [1005]
+--Rumor during quest to add
+
+--RumorsPostFailure:   [1006]
+--Rumor post failure to add
+
+--RumorsPostSuccess:   [1007]
+--Rumor post success to add
+
+
+QuestorPostsuccess:  [1008]
+<ce>            *TEMP DIALOGUE*  Oh yeah, tiger slayer! 
+
+QuestorPostfailure:  [1009]
+<ce>            *TEMP DIALOGUE* You suck!
+
+Message: 1010
+<ce>%qdt
+*TEMP JOURNAL ENTRY*  I am to fight a tiger in the Daggerfall Arena for
+honor and glory.
+
+-- VICTORY MESSAGES
+Message: 1100
+*TEMP DIALOGUE*
+The tiger dies. The crowds cheer your victory.
+
+Message: 1110
+*TEMP DIALOGUE*
+Your foe, badly injured, gives up. The crowds cheer your victory.
+
+-- FAILURE MESSAGES
+Message: 1200
+*TEMP DIALOGUE* 
+You took your sweet time. The fight is cancelled, coward.
+
+Message: 1210
+*TEMP DIALOGUE* 
+You used a forbidden spell during the fight!
+
+Message: 1220
+*TEMP DIALOGUE* 
+You fled the Arena, you coward!
+
+Message: 1230
+*TEMP DIALOGUE* 
+You are near death. The opponent is cheered by the crowd. You lose!
+
+Message: 1240
+*TEMP DIALOGUE*
+You fall down, near exhausted. Your opponent is claimed the victor. You lose!
+
+Message: 1250
+TEMP DIALOGUE
+You have hit your opponent before the fight started! You lose!
+
+-- CROWD HECKLING MESSAGES
+Message: 1300
+*TEMP DIALOGUE*
+Someone in the crowd screams : KILL IT!!!
+<--->
+*TEMP DIALOGUE*
+Someone in the crowd screams : YOU SUCK, %pcn!
+<--->
+*TEMP DIALOGUE*
+Someone in the crowd screams : COME ON [RANK]! YOU CAN DO IT
+<--->
+*TEMP DIALOGUE*
+Someone in the crowd screams : %pcn! I'M YOUR FATHER!
+
+-- ARENA ANNOUNCER MESSAGES
+Message: 1400
+*TEMP DIALOGUE*
+You hear the Arena announcer from behind the doors :
+<ce>
+"Welcome good people of %cn! You asked for a fight
+and a fight you shall have!
+<ce>
+It's %pcn the [RANK] against a tiger in a battle
+to the death!"
+
+Message: 1410
+*TEMP DIALOGUE*
+The Arena announcer exclaims : 
+<ce>
+"FIGHT"
+
+-- DEBUG MESSAGES
+Message: 1500
+
+QBN:
+Item _reward_ gold
+Item _detectplayermarker_ indulcet
+
+Person _questgiver_ group Questor
+
+Place _arena_ local guildhall
+
+Foe _arenacombatant_ is Sabretooth_tiger
+
+Clock _timer_ 1:00
+Clock _crowdhecklingtimer_ 0:03 0:5
+
+variable _victory_
+variable _failure_
+variable _inside_
+
+--	Quest start-up:
+	start timer _timer_
+    say 1400
+    place item _detectplayermarker_ at _arena_
+	log 1010 step 0
+    pc at _arena_ set _inside_
+    place foe _arenacombatant_ at _arena_
+    change foe _arenacombatant_ team 1
+
+
+-- DETECT WHEN PC IS INSIDE THE PIT (7 UNITS IS THE MAGIC DISTANCE NUMBER)
+_playerinsidepit_ task:
+    player within 7 units of item _detectplayermarker_
+
+-- SPAWN THE ARENA COMBATANTS WHEN PC IS WITHIN THE MARKER'S PERIMITER
+_startfight_ task:
+    when _playerinsidepit_
+    say 1410
+    change foe _arenacombatant_ team 0
+    start timer _crowdhecklingtimer_
+
+
+-- ARENA COMBATANTS CONTROL
+    -- ARENA COMBATANT DEAD (VICTORY IF FIGHT STARTED, FAILURE IF PC KILLED OPPONENT IN 1 HIT BEFORE FIGHT STARTED)
+_slainfoe_ task:
+    killed _arenacombatant_
+
+_slainfoelegal_ task:
+    when _slainfoe_ and _startfight_
+    say 1100
+    stop timer _crowdhecklingtimer_
+    setvar _victory_
+
+_slainfoeillegal_ task:
+    when _slainfoe_ and not _startfight_
+    setvar _failure_
+
+    -- ARENA COMBATAND BADLY INJURED
+_injuredfoe_ task:
+    enemy _arenacombatant_ health is lower than 25%
+    say 1110
+    remove foe _arenacombatant_
+    stop timer _crowdhecklingtimer_
+    setvar _victory_
+
+
+
+-- SOUND EFFECTS MECHANICS
+_victorysound_ task:
+    when _victory_
+    play sound levelup_tes1 every 0 minutes 1 times
+
+_failuresound_ task:
+    when _failure_
+    play sound halt every 0 minutes 1 times
+
+
+-- QUEST GIVER CLICKING MECHANICS
+_qgclicked_ task:
+    clicked npc _questgiver_
+
+_clearclick_ task:
+    when _qgclicked_ and not _victory_
+    clear _qgclicked_ _clearclick_      
+
+
+-- VICTORY MECHANICS (FOES ARE SLAIN AND/OR BADLY INJURED)
+_reward_ task:
+    when _qgclicked_ and _victory_
+    give pc _reward_
+    end quest
+
+
+-- FAILURE MECHANICS (PLAYER LEFT THE ARENA, FORBIDDEN SPELL EFFECTS USED, TIME'S UP, PLAYER NEAR DEATH, PLAYER AT VERY LOW STAMINA, PLAYER ATTACKS OPPONENTS BEFORE FIGHT)
+_failuretask_ task:
+    when _failure_
+    remove foe _arenacombatant_
+    end quest
+
+    -- PLAYER LEFT THE PIT (for now, will detect only if the PC left the building)
+_pcleft_ task:
+    when not _inside_
+    say 1220
+    setvar _failure_
+
+    -- PLAYER USED LEVITATION
+_levitationspellused_ task:
+    magic-effect key Levitate is on player
+    say 1210
+    setvar _failure_
+
+    -- PLAYED USED TELEPORT
+_teleportspellused_ task:
+    magic-effect key Teleport-Effect is on player
+    say 1210
+    setvar _failure_
+
+    -- TIME'S UP AND FOES AREN'T DEAD
+_timerfail_ task:
+    when _timer_ and not _victory_
+    say 1200
+    setvar _failure_
+
+    -- PLAYER BADLY INJURED AGAINST HUMAN OPPONENTS
+_injuredpc_ task:
+    player health is less than 10%
+    say 1230
+    setvar _failure_
+
+    -- PLAYER AT 5% STAMINA AGAINST HUMAN OPPONENTS (CURRENTLY DOES NOT WORK IN QUEST ACTION EXTENSION)
+--_unconsciouspc_ task:
+--    player fatigue is less than 5%
+--    say 1240
+--    setvar _failure_
+
+    -- PLAYER ATTACKS OPPONENTS BEFORE FIGHT BEGUN
+_hitcombatant_ task:
+    injured _arenacombatant_
+
+_attackbeforefight_ task:
+    when _hitcombatant_ and not _startfight_
+    say 1250
+    setvar _failure_
+
+
+-- TIMERS
+_timer_ task:
+
+_crowdhecklingtimer_ task:
+    say 1300

@@ -1,0 +1,234 @@
+Quest: ARENAGUILD01
+DisplayName: The Late Drunk Gladiator
+-- Message panels
+QRC:
+
+QuestorOffer:  [1000]
+<ce>                    Blasted _dummy_! You there,
+<ce>                    you look like you're quick on your feet.
+<ce>                    Want to earn some easy money?
+
+RefuseQuest:  [1001]
+<ce>                    Then get out of my sight if you don't
+<ce>                    want to make yourself useful.
+
+AcceptQuest:  [1002]
+<ce>                    Great, I need you to fetch _dummy_,
+<ce>                    a =dummy_ who's scheduled
+<ce>                    to fight today and %g hasn't shown up for
+<ce>                    training. The fool's either at home
+<ce>                    in _residence_ or at some inn.
+<ce>                    Bring %g2 back within 8 hours.
+
+QuestFail:  [1003]
+<ce>            
+
+QuestComplete:  [1004]
+<ce>                    _dummy_'s too drunk? Hope %g1
+<ce>                    doesen't mind a demotion. Well at least you've
+<ce>                    done as I said. Here is your prize of =reward_ gold.
+<ce>                    Get yourself something nice.
+
+--RumorsDuringQuest:   [1005]
+--Rumor during quest to add
+
+--RumorsPostFailure:   [1006]
+--Rumor post failure to add
+
+--RumorsPostSuccess:   [1007]
+--Rumor post success to add
+
+
+QuestorPostsuccess:  [1008]
+<ce>            Ah, there you are. Thanks to your quick thinking,
+<ce>            we averted a disaster. _dummy_ has been dealt
+<ce>            with, and we found a replacement who put on a
+<ce>            damn good show. You did well, kid. The arena owes you one.
+
+QuestorPostfailure:  [1009]
+<ce>            Did you come back expecting money for strolling around
+<ce>            a town with no word of where _dummy_ is?
+<ce>            Get out of my sight.
+
+Message: 1010
+<ce>%qdt
+_questgiver_ of ___questgiver_'s
+__questgiver_ hired me to find _dummy_, a combatant
+who hasn't shown up for training. The ringmaster believes
+%g's either in %g3 home, _residence_ or at
+one of the city's inns. As %g's expected to fight today, I have
+8 hours to find %g2.
+
+Message: 1020
+<ce>                    The house is quiet and _dummy_
+<ce>                    is nowhere to be seen, %g1's probably
+<ce>                    at one of the inns. 
+
+Message: 1021
+<ce>                    A stentch of alcohol permeated the room.
+<ce>                    _dummy_ is definitely at home.
+
+Message: 1030
+<ce>                    The _inn_ seems to be working as normal.
+<ce>                    You don't think you'll find _dummy_ here.
+
+Message: 1031
+<ce>                    The patrons are especially excited in 
+<ce>                    _inn_, crowding around a
+<ce>                    small celebrity and hollering excitedly
+<ce>                    at what looks like _dummy_.
+
+Message: 1040
+<ce>                    "Uhh, what? Fight today? Naw, not today." -hic!-
+
+Message: 1041
+<ce>                    You figure that _dummy_ is too drunk
+<ce>                    to fight and should probably rest for the day.
+
+--Message: 1041 [To expand later to give the choice to the PC to bring the gladiator anyway]
+--<ce>                    You figure that _dummy_ is too drunk
+--<ce>                    to fight and should probably rest for the day. However,
+--<ce>                    you could also bring %g1 to the ringmaster anyhow.
+--<ce>
+--<ce>                    Do you let _dummy_ rest?
+
+Message: 1042
+<ce>                    You set _dummy_ down on %g3 bed, making sure %g
+<ce>                    won't choke on %g2self. As soon as %g's tucked in,
+<ce>                    %g's fast asleep. The ringmaster will want to hear
+<ce>                    that _dummy_ will not come today.
+
+--Message: 1043
+--<ce>                    "Where we going?"
+--<ce>
+--<ce>                    _dummy_ shows no reluctance in following you.
+
+Message: 1045
+<ce>                    _dummy_ seems to be having a good time. You should
+<ce>                    take the drunk champion home.
+
+--Message: 1045 [To expand to allow the PC to leave the gladiator there, maybe even get drunk with him. 
+--If he takes him home, there's a chance the gladiator, in his drunken state, will fight back.]
+--<ce>                    _dummy_ seems to be having a good time. You could
+--<ce>                    leave %g2 to his drunken state, take the drunk
+--<ce>                    champion home or take %g2 directly to the ringmaster.
+--<ce>
+--<ce>                    Do you tell _dummy_ to follow you?
+
+Message: 1060
+<ce>                    It has been 8 hours since you were
+<ce>                    tasked with finding _dummy_. The
+<ce>                    ringmaster will be furious.
+
+Message: 1061
+<ce>                    "I really gotta go. I -hic! have a
+<ce>                    fight to win! Huzzah!"
+<ce>
+<ce>                    _dummy_ strolls away, ignoring you,
+<ce>                    turns a corner and vanishes amongst
+<ce>                    the crowd.
+<ce>
+<ce>                    8 hours have passed since you were
+<ce>                    tasked with finding _dummy_. The
+<ce>                    ringmaster will be furious.
+
+QBN:
+Item _reward_ gold range 30 to 90
+
+Person _questgiver_ group Questor
+Person _dummy_ group Armorer
+
+Place _residence_ local house
+Place _inn_ local tavern
+
+Clock _timer_ 00:05 
+
+variable _pcinhomevar_
+variable _pcininnvar_
+variable _done_
+
+--	Quest start-up:
+	start timer _timer_
+	log 1010 step 0
+    pick one of _dummyathome_ _dummyatinn_
+    pc at _residence_ set _pcinhomevar_
+    pc at _inn_ set _pcininnvar_
+
+
+_dummyathome_ task:
+    place npc _dummy_ at _residence_
+
+_dummyatinn_ task:
+    place npc _dummy_ at _inn_
+
+_notatinn_ task:
+    when _pcininnvar_ and not _dummyatinn_
+    say 1030
+
+_notathome_ task:
+    when _pcinhomevar_ and not _dummyathome_ and not _dummyescort_
+    say 1020    
+
+_athome_ task:
+    when _pcinhomevar_ and _dummyathome_
+    say 1021
+
+_atinn_ task:
+    when _pcininnvar_ and _dummyatinn_
+    say 1031    
+
+
+
+_dummyclicked_ task:
+    clicked npc _dummy_
+    say 1040
+
+_dummyescort_ task:
+    when _dummyatinn_ and _dummyclicked_
+    say 1045
+    add _dummy_ face
+    hide npc _dummy_
+
+_dummysleep_ task:
+    when _dummyathome_ and _dummyclicked_
+    say 1041
+    say 1042
+    setvar _done_
+
+_dummyescorthome_ task:
+    when _dummyescort_ and _pcinhomevar_
+    say 1042
+    drop _dummy_ face
+    setvar _done_
+
+
+_qgclicked_ task:
+    clicked npc _questgiver_
+
+_clearclick_ task:
+    when _qgclicked_ and not _done_
+    clear _qgclicked_ _clearclick_      
+
+_reward_ task:
+    when _qgclicked_ and _done_
+    give pc _reward_
+    end quest
+
+
+_timerfail_ task:
+    when _timer_ and not _done_
+    say 1060
+    end quest
+
+_timerfail2_ task:
+    when _timer_ and _done_
+    say 1060
+    end quest    
+
+_timerfailescort_ task:
+    when _timer_ and _dummyescort_ and not _done_
+    say 1061
+    end quest    
+
+_timer_ task:
+
