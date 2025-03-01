@@ -9,8 +9,6 @@
         "Assets/Game/Mods/ArenaGuildMod/Scripts/ArenaGuildMod.cs",
         "Assets/Game/Mods/ArenaGuildMod/WorldData/ARENA01.RMB.json",
         "Assets/Game/Mods/ArenaGuildMod/WorldData/locationnew-arenadaggerfall-17.json",
-        "Assets/Game/Mods/ArenaGuildMod/Prefabs/45172.prefab",
-        "Assets/Game/Mods/ArenaGuildMod/Prefabs/45171.prefab",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.000_74-0.png",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.328_3-0.PNG",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.326_0-0.PNG",
@@ -32,8 +30,6 @@
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.169_0-0.png",
         "Assets/Game/Mods/ArenaGuildMod/Textures/TEXTURE.074_0.png",
         "Assets/Game/Mods/ArenaGuildMod/ArenaGuild.dfmod.json",
-        "Assets/Game/Mods/ArenaGuildMod/Textures/1210_21-0.png",
-        "Assets/Game/Mods/ArenaGuildMod/Models/ARENA_interrior.fbx",
-        "Assets/Game/Mods/ArenaGuildMod/Models/ARENA_exterior.fbx"
+        "Assets/Game/Mods/ArenaGuildMod/Textures/1210_21-0.png"
     ]
 }
