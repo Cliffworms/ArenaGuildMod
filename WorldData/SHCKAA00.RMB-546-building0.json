@@ -1,12 +1,12 @@
 {
     "FactionId": 0,
-    "BuildingType": 11,
-    "Quality": 16,
+    "BuildingType": 19,
+    "Quality": 3,
     "NameSeed": 0,
     "RmbSubRecord": {
-        "XPos": 2048,
-        "ZPos": 2048,
-        "YRotation": 0,
+        "XPos": 2304,
+        "ZPos": 1280,
+        "YRotation": 1536,
         "Exterior": {
             "Header": {
                 "Num3dObjectRecords": 1,
@@ -17,9 +17,9 @@
             },
             "Block3dObjectRecords": [
                 {
-                    "ModelId": "45171",
-                    "ModelIdNum": 45171,
-                    "ObjectType": 13,
+                    "ModelId": "118",
+                    "ModelIdNum": 118,
+                    "ObjectType": 4,
                     "XPos": 0,
                     "YPos": 0,
                     "ZPos": 0,
